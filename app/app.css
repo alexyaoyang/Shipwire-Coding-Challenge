@@ -1,0 +1,21 @@
+.capitalize {
+  display: inline-block;  
+}
+
+.capitalize::first-letter {
+  text-transform: uppercase;
+}
+
+.capitalizeall {
+  text-transform: capitalize;
+}
+
+.form-horizontal input.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+.form-horizontal input.ng-valid.ng-touched {
+  background-color: #78FA89;
+}
+
+.form-horizontal label.required:after { content:" *"; }

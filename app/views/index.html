@@ -1,0 +1,25 @@
+<h2>{{mode}} Listing</h2>
+ 
+<table class="table" ng-show="items.length>0">
+  <tr>
+    <th class="capitalizeall" ng-repeat="label in imptlabels">{{label.name}}</th>
+    <th>Actions</th>
+  </tr>
+  <tr ng-repeat="item in items">
+    <td ng-repeat="label in imptlabels">
+      <a ng-show="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})"> {{item[label.code]}}</a>
+      <span ng-show="label.code != 'product'">{{item[label.code]}}</span>
+    </td>
+    <td>
+    <a ng-show="mode == 'Product'" ui-sref="detailsProduct({id:item._id})">Details</a> 
+    <a ng-show="mode == 'Order'" ui-sref="detailsOrder({id:item._id})">Details</a> |
+    <a ng-show="mode == 'Product'" ui-sref="editProduct({id:item._id})">Edit</a> 
+    <a ng-show="mode == 'Order'" ui-sref="editOrder({id:item._id})">Edit</a> |
+    <a ng-show="mode == 'Product'" href="#" ng-click="deleteProduct(item._id)">Delete</a>
+    <a ng-show="mode == 'Order'" href="#" ng-click="deleteOrder(item._id)">Delete</a>
+    </td>
+  </tr>
+</table>
+<div ng-show="items.length==0">
+ No record found !!
+</div>
