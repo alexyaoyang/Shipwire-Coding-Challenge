@@ -14,16 +14,16 @@
       {"name" : "ID", "code" : "_id"},
       {"name" : "name", "code" : "name"},
       {"name" : "description", "code" : "description"},
-      {"name" : "value", "code" : "value"}];
+      {"name" : "value (USD)", "code" : "value"}];
     $scope.labels = [
       {"name" : "ID", "code" : "_id", "required": "false", "type": "text"},
       {"name" : "name", "code" : "name", "required": "true", "type": "text"},
       {"name" : "description", "code" : "description", "required": "false", "type": "text"},
-      {"name" : "value in USD", "code" : "value", "required": "true", "type": "number"},
-      {"name" : "width", "code" : "width", "required": "false", "type": "number"},
-      {"name" : "length", "code" : "length", "required": "false", "type": "number"},
-      {"name" : "height", "code" : "height", "required": "false", "type": "number"},
-      {"name" : "weight", "code" : "weight", "required": "false", "type": "number"}];
+      {"name" : "value (USD)", "code" : "value", "required": "true", "type": "number"},
+      {"name" : "width (inches)", "code" : "width", "required": "false", "type": "number"},
+      {"name" : "length (inches)", "code" : "length", "required": "false", "type": "number"},
+      {"name" : "height (inches)", "code" : "height", "required": "false", "type": "number"},
+      {"name" : "weight (lbs)", "code" : "weight", "required": "false", "type": "number"}];
     const inCurr = 'USD';
     $scope.currencies = currencyConverterService.currencies;
     $scope.total = (value, outCurr) => {
@@ -35,7 +35,7 @@
         productService.deleteProduct(id).then((res) => {
           if (res.data == "deleted") {
             $state.go("products", {}, { reload: true });
-          }
+          } else alert("Delete failed, please check inputs!");
         }).catch((err) => {
           console.error(err);
           alert("Delete failed, please refresh and make sure product has not been deleted already.");
@@ -66,7 +66,7 @@
           productService.updateProduct($scope.item).then((res) => {
           if (res.data == "updated") {
             $state.go("products");
-          }
+          } else alert("Update failed, please check inputs!");
           }).catch((err) => {
             console.error(err);
             alert("Update failed, please try again!");
@@ -83,7 +83,7 @@
           productService.createProduct($scope.item).then((res) => {
             if (res.data == "created") {
               $state.go("products");
-            }
+            } else alert("Create failed, please check inputs!");
           }).catch((err) => {
             console.error(err);
             alert("Create failed, please try again!");

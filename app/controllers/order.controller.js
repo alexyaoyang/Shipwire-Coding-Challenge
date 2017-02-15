@@ -30,7 +30,7 @@
         orderService.deleteOrder(id).then((res) => {
           if (res.data == "deleted") {
             $state.go("orders", {}, { reload: true });
-          }
+          } else alert("Delete failed, please check inputs!");
         }).catch((err) => {
           console.error(err);
           alert("Delete failed, please refresh and make sure order has not been deleted already.");
@@ -58,15 +58,31 @@
 
       $scope.saveData = () => {
         if ($scope.formData.$valid) {
-          orderService.updateOrder($scope.item).then((res) => {
-          if (res.data == "updated") {
-            $state.go("orders");
-          }
-          }).catch((err) => {
-            console.error(err);
-            alert("Update failed, please try again!");
+          orderService.checkAddress($scope.item).then((result) => {
+            if(typeof result.data == 'object' && result.data.length > 0){
+              let addressMsg = orderService.constructAddressMessage(result.data[0].components, $scope.item);
+              if(!addressMsg[0] || addressMsg[0] && confirm(addressMsg[1])){
+                if(addressMsg.length > 1){
+                  $scope.item.streetAddress = addressMsg[2];
+                  $scope.item.city = addressMsg[3];
+                  $scope.item.state = addressMsg[4];
+                  $scope.item.zipCode = addressMsg[5];
+                }
+                orderService.updateOrder($scope.item).then((res) => {
+                if (res.data == "updated") {
+                  $state.go("orders");
+                } else alert("Update failed, please check inputs!");
+                }).catch((err) => {
+                  console.error(err);
+                  alert("Update failed, please try again!");
+                });
+              }
+            } else alert("Address is not valid! Please enter valid Street Address, City, State and Zipcode.");
           });
-        } else alert("Update failed, please check inputs!");
+        } else {
+          console.error("Update failed, please check inputs!");
+          alert("Update failed, please check inputs!");
+        }
       };
     } else if ($state.current.name == "createOrder") {
       $rootScope.Title = "Create Order";
@@ -75,15 +91,24 @@
         if ($scope.formData.$valid) {
           orderService.checkAddress($scope.item).then((result) => {
             if(typeof result.data == 'object' && result.data.length > 0){
-              $scope.IsSubmit = true;
-              orderService.createOrder($scope.item).then((res) => {
-                if (res.data == "created") {
-                  $state.go("orders");
+              let addressMsg = orderService.constructAddressMessage(result.data[0].components, $scope.item);
+              if(!addressMsg[0] || addressMsg[0] && confirm(addressMsg[1])){
+                if(addressMsg.length > 1){
+                  $scope.item.streetAddress = addressMsg[2];
+                  $scope.item.city = addressMsg[3];
+                  $scope.item.state = addressMsg[4];
+                  $scope.item.zipCode = addressMsg[5];
                 }
-              }).catch((err) => {
-                console.error(err);
-                alert("Create failed, please try again!");
-              });
+                $scope.IsSubmit = true;
+                orderService.createOrder($scope.item).then((res) => {
+                  if (res.data == "created") {
+                    $state.go("orders");
+                  } else alert("Create failed, please check inputs!");
+                }).catch((err) => {
+                  console.error(err);
+                  alert("Create failed, please try again!");
+                });
+              }
             } else alert("Address is not valid! Please enter valid Street Address, City, State and Zipcode.");
           }).catch((err) => {
             console.error(err);

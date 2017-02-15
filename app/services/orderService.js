@@ -37,6 +37,19 @@
         url += form.state + '/';
         url += form.zipCode;
         return $http.get(url);
+      },
+      constructAddressMessage: (addrobj, order) => {
+        if(addrobj.city_name != order.city || 
+          addrobj.zipcode != order.zipCode || 
+          addrobj.state_abbreviation != order.state){
+          let msg = "Did you mean ",
+              address = addrobj.primary_number + " " + addrobj.street_name + " " +  addrobj.street_suffix,
+              city = addrobj.city_name,
+              state = addrobj.state_abbreviation,
+              zipcode = addrobj.zipcode;
+              return [true, msg + address + ", " + city + ", " + state + " " + zipcode + "?", address, city, state, zipcode];
+          }
+        else return [false];
       }
     };
   }
