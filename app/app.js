@@ -10,15 +10,15 @@
       templateUrl: "/views/index.html",
       controller: "ProductController"
     }).state("createProduct", {
-      url: "/createProduct",
+      url: "/products",
       templateUrl: "/views/create.html",
       controller: "ProductController"
     }).state("editProduct", {
-      url: "/editProduct/:id",
+      url: "/products/:id",
       templateUrl: "/views/create.html",
       controller: "ProductController"
     }).state("detailsProduct", {
-      url: "/detailsProduct/:id",
+      url: "/products/:id",
       templateUrl: "/views/details.html",
       controller: "ProductController"
     }).state("orders", {
@@ -26,15 +26,15 @@
       templateUrl: "/views/index.html",
       controller: "OrderController"
     }).state("createOrder", {
-      url: "/createOrder",
+      url: "/orders",
       templateUrl: "/views/create.html",
       controller: "OrderController"
     }).state("editOrder", {
-      url: "/editOrder/:id",
+      url: "/orders/:id",
       templateUrl: "/views/create.html",
       controller: "OrderController"
     }).state("detailsOrder", {
-      url: "/detailsOrder/:id",
+      url: "/orders/:id",
       templateUrl: "/views/details.html",
       controller: "OrderController"
     });
