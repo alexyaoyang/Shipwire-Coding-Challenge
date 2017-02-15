@@ -4,7 +4,7 @@ const mongoose = require("mongoose"),
 
 const productSchema = Schema({
   _id             : { type: objectId, auto: true },
-  name            : { type: String, required: true },
+  name            : { unique: true, type: String, required: true },
   description     : String,
   width           : Number,
   length          : Number,
