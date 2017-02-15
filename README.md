@@ -6,7 +6,7 @@
 2. Run MongoDB: e.g. `mongod --dbpath=./data`.
 3. Clone repo and `cd` in.
 4. Get address validation API key from [SmartyStreets](https://smartystreets.com/) (free)
-5. Create a `.env` file and store AUTH_ID and AUTH_TOKEN from SmartyStreet in.
+5. Create a `.env` file in root folder, store AUTH_ID and AUTH_TOKEN from SmartyStreet inside and save file.
 6. Install Dependencies: `run npm install`.
 7. Start Server: `run npm start`.
 
