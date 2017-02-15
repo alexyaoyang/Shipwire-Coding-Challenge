@@ -15,23 +15,35 @@ router.get("/:address/:city/:state/:zipcode", (req, res) => { //check address
     'zipcode': req.params.zipcode
   });
   request('https://us-street.api.smartystreets.com/street-address?'+data, (err, response, data) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send(data);
   })
 }).get("/", (req, res) => { //show all orders
   order.find({}, (err, data) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send(data);
   });
 }).get("/:id", (req, res) => { //find a single order
   order.find({ _id: req.params.id }, (err, data) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send(data[0]);
   });
 }).post("/", (req, res) => { // create order
   const model = new order(req.body);
   model.save((err) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send("created");
   });
 }).put("/:id", (req, res) => { //update order
@@ -41,12 +53,18 @@ router.get("/:address/:city/:state/:zipcode", (req, res) => { //check address
     state: obj.state, zipcode: obj.zipcode, phoneNumber: obj.phoneNumber,
     product: obj.product, quantity: obj.quantity}, 
   (err) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send("updated");
   });
 }).delete("/:id", (req, res) => { //delete order
   order.findByIdAndRemove(req.params.id, (err) => {
-    if (err) return console.error(err);
+    if (err) {
+      res.send("failed");
+      return console.error(err);
+    }
     res.send("deleted");
   });
 });
