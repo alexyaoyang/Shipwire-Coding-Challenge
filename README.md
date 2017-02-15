@@ -1,14 +1,14 @@
 # ShipWire Coding Challenge - A Product & Order CRUD.
 
-
-
 ## Installation
 
 1. Install NodeJS and MongoDB for your OS
 2. Run MongoDB: e.g. `mongod --dbpath=./data`.
 3. Clone repo and `cd` in.
-4. Install Dependencies: `run npm install`.
-5. Start Server: `run npm start`.
+4. Get address validation API key from [SmartyStreets](https://smartystreets.com/) (free)
+5. Create a `.env` file and store AUTH_ID and AUTH_TOKEN from SmartyStreet in.
+6. Install Dependencies: `run npm install`.
+7. Start Server: `run npm start`.
 
 ## API Reference
 ### Product APIs
@@ -154,6 +154,12 @@
 ## Tests
 
 `npm test` will run end-to-end tests. (To be done)
+
+## Acknowledgements
+* Address Validation is done with SmartyStreets API.
+* Tech Stack is MEAN.
+* Bootstrap for UI.
+* Mongoose as middle layer between UI & DB.
 
 ## License
 
