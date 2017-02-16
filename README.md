@@ -160,6 +160,8 @@
 * Tech Stack is MEAN.
 * Bootstrap for UI.
 * Mongoose as middle layer between UI & DB.
+* Yahoo Finance API & AngularJS Doc for currency exchange.
+* Modified MEAN.io boilerplate
 
 ## License
 
