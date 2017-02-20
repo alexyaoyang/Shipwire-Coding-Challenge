@@ -19,7 +19,8 @@
 * Data Params: none
 * Response:
   * Code: 200
-  * Content: `[{"_id": "58a17642c3eca572de2f2f89","name": "product1","description": "product1","value": 1,"__v": 0}]`
+  * Content: `[{"_id": "PRODUCT_ID","name": "product1","description": "product1","value": 1,"__v": 0}]`
+* Example: `curl -X GET http://138.68.46.47/api/product`
 
 #### Find a single product
 * URL: `/api/product` 
@@ -29,7 +30,8 @@
 * Data Params: none
 * Response:
   * Code: 200
-  * Content: `{"_id":"58a4d60290aa034e1ffc2249","name":"p1","value":1,"__v":0}`
+  * Content: `{"_id":"PRODUCT_ID","name":"p1","value":1,"__v":0}`
+* Example: `curl -X GET http://138.68.46.47/api/product/REPLACE_WITH_PRODUCT_ID`
 
 #### Create a product
 * URL: `/api/product` 
@@ -50,6 +52,7 @@
 * Response:
   * Code: 200
   * Content: `created`
+* Example: `curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://138.68.46.47/api/product -d '{"name":"Product 100","value":"1"}'`
 
 #### Update a product
 * URL: `/api/product` 
@@ -61,8 +64,6 @@
   ##### Required
   * name: String
   * value: Number
-  
-  ##### Optional
   * description: String
   * width: Number
   * length: Number
@@ -71,6 +72,7 @@
 * Response:
   * Code: 200
   * Content: `updated`
+* Example: `curl -X PUT -H "Accept: Application/json" -H "Content-Type: application/json" http://138.68.46.47/api/product/REPLACE_WITH_PRODUCT_ID -d '{"name":"Product 2","value":"1","description":"p1","width":"","height":"","length":"","weight":""}'`
 
 #### DELETE a product
 * URL: `/api/product` 
@@ -81,6 +83,7 @@
 * Success Response:
   * Code: 200
   * Content: `deleted`
+* Example: `curl -X DELETE http://138.68.46.47/api/product/REPLACE_WITH_PRODUCT_ID`
 
 ### Order APIs
 #### Show all orders
@@ -90,7 +93,8 @@
 * Data Params: none
 * Response:
   * Code: 200
-  * Content: `[{"_id":"58a4ba386e1cb93140aaa64f","recipientName":"Joey","streetAddress":"1269 Poplar Ave","city":"Sunnyvale","state":"CA","zipCode":"94086","phoneNumber":"4158192749","quantity":3,"product":"58a17642c3eca572de2f2f89","__v":0}]`
+  * Content: `[{"_id":"ORDER_ID","recipientName":"Joey","streetAddress":"1269 Poplar Ave","city":"Sunnyvale","state":"CA","zipCode":"94086","phoneNumber":"4158192749","quantity":3,"product":"PRODUCT_ID","__v":0}]`
+* Example: `curl -X GET http://138.68.46.47/api/order`
 
 #### Find a single order
 * URL: `/api/order` 
@@ -100,7 +104,8 @@
 * Data Params: none
 * Response:
   * Code: 200
-  * Content: `{"_id":"58a4ba386e1cb93140aaa64f","recipientName":"Joey","streetAddress":"1269 Poplar Ave","city":"Sunnyvale","state":"CA","zipCode":"94086","phoneNumber":"4158192749","quantity":3,"product":"58a17642c3eca572de2f2f89","__v":0}`
+  * Content: `{"_id":"ORDER_ID","recipientName":"Joey","streetAddress":"1269 Poplar Ave","city":"Sunnyvale","state":"CA","zipCode":"94086","phoneNumber":"4158192749","quantity":3,"product":"PRODUCT_ID","__v":0}`
+* Example: `curl -X GET http://138.68.46.47/api/order/REPLACE_WITH_ORDER_ID`
 
 #### Create an order
 * URL: `/api/order` 
@@ -120,6 +125,7 @@
 * Response:
   * Code: 200
   * Content: `created`
+* Example: `curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://138.68.46.47/api/order -d '{"recipientName":"Alex", "streetAddress":"1269 Poplar Ave", "city":"Sunnyvale", "state":"CA", "zipCode":"94086", "phoneNumber":"123456789", "product":"REPLACE_WITH_PRODUCT_ID", "quantity":"1"}'`
 
 #### Update an order
 * URL: `/api/order` 
@@ -140,6 +146,7 @@
 * Response:
   * Code: 200
   * Content: `updated`
+* Example: `curl -X PUT -H "Accept: Application/json" -H "Content-Type: application/json" http://138.68.46.47/api/order/REPLACE_WITH_ORDER_ID -d '{"recipientName":"Alex", "streetAddress":"1269 Poplar Ave", "city":"Sunnyvale", "state":"CA", "zipCode":"94086", "phoneNumber":"123456789", "product":"REPLACE_WITH_PRODUCT_ID", "quantity":"1"}'`
 
 #### DELETE an order
 * URL: `/api/order` 
@@ -150,6 +157,7 @@
 * Success Response:
   * Code: 200
   * Content: `deleted`
+* Example: `curl -X DELETE -H http://138.68.46.47/api/order/REPLACE_WITH_ORDER_ID`
 
 ## Tests
 
