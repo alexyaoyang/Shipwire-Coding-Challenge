@@ -18,7 +18,7 @@
       templateUrl: "/views/create.html",
       controller: "ProductController"
     }).state("detailsProduct", {
-      url: "/products/:id",
+      url: "/productdetail/:id",
       templateUrl: "/views/details.html",
       controller: "ProductController"
     }).state("orders", {
@@ -34,7 +34,7 @@
       templateUrl: "/views/create.html",
       controller: "OrderController"
     }).state("detailsOrder", {
-      url: "/orders/:id",
+      url: "/orderdetail/:id",
       templateUrl: "/views/details.html",
       controller: "OrderController"
     });
