@@ -1,14 +1,14 @@
-<h2>{{mode}} Listing</h2>
+<h2>{{::mode}} Listing</h2>
  
 <table class="table" ng-show="items.length>0">
   <tr>
-    <th class="capitalizeall" ng-repeat="label in imptlabels">{{label.name}}</th>
+    <th class="capitalizeall" ng-repeat="label in imptlabels">{{::label.name}}</th>
     <th>Actions</th>
   </tr>
   <tr ng-repeat="item in items">
     <td ng-repeat="label in imptlabels">
-      <a ng-show="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})"> {{item[label.code]}}</a>
-      <span ng-show="label.code != 'product'">{{item[label.code]}}</span>
+      <a ng-show="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})"> {{::item[label.code]}}</a>
+      <span ng-show="label.code != 'product'">{{::item[label.code]}}</span>
     </td>
     <td>
     <a ng-show="mode == 'Product'" ui-sref="detailsProduct({id:item._id})">Details</a> 

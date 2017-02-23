@@ -1,20 +1,20 @@
-<h2>{{mode}} Details</h2>
+<h2>{{::mode}} Details</h2>
 <table class="table" ng-show="item._id!=null">
   <tr ng-repeat="label in labels">
-    <th ng-show="item[label.code] != null" class="capitalizeall">{{label.name}}</th>
+    <th ng-show="item[label.code] != null" class="capitalizeall">{{::label.name}}</th>
     <td ng-show="label.code != 'product' && item[label.code] != null">
-      <span ng-show="label.code != 'value'">{{item[label.code]}}</span>
+      <span ng-show="label.code != 'value'">{{::item[label.code]}}</span>
       <span ng-repeat="c in currencies" ng-show="label.code == 'value'">{{total(item[label.code],c) | currency:c}} </span>
     </td>
     <td ng-show="item[label.code] != null">
       <a ng-show="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})">
-        {{item[label.code]}}
+        {{::item[label.code]}}
       </a>
     </td>
   </tr>
   <tr ng-show="item.productData!=null" ng-repeat="label in ['name', 'description', 'value']">
     <th class="capitalizeall">Product {{label}}</th>
-    <td>{{item.productData[label]}}</td>
+    <td>{{::item.productData[label]}}</td>
   </tr>
 </table>
 <div ng-show="item._id==null">
