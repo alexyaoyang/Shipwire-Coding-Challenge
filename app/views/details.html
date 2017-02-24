@@ -1,24 +1,24 @@
 <h2>{{::mode}} Details</h2>
-<table class="table" ng-show="item._id!=null">
-  <tr ng-repeat="label in labels">
-    <th ng-show="item[label.code] != null" class="capitalizeall">{{::label.name}}</th>
-    <td ng-show="label.code != 'product' && item[label.code] != null">
-      <span ng-show="label.code != 'value'">{{::item[label.code]}}</span>
-      <span ng-repeat="c in currencies" ng-show="label.code == 'value'">{{total(item[label.code],c) | currency:c}} </span>
+<table class="table" ng-if="item._id!=null">
+  <tr ng-repeat="label in labels track by label.code">
+    <th ng-if="item[label.code] != null" class="capitalizeall">{{::label.name}}</th>
+    <td ng-if="label.code != 'product' && item[label.code] != null">
+      <span ng-if="label.code != 'value'">{{::item[label.code]}}</span>
+      <span ng-repeat="c in currencies" ng-if="label.code == 'value'">{{total(item[label.code],c) | currency:c}} </span>
     </td>
-    <td ng-show="item[label.code] != null">
-      <a ng-show="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})">
+    <td ng-if="item[label.code] != null">
+      <a ng-if="label.code == 'product'" ui-sref="detailsProduct({id:item[label.code]})">
         {{::item[label.code]}}
       </a>
     </td>
   </tr>
-  <tr ng-show="item.productData!=null" ng-repeat="label in ['name', 'description', 'value']">
-    <th class="capitalizeall">Product {{label}}</th>
+  <tr ng-if="item.productData!=null" ng-repeat="label in ['name', 'description', 'value']">
+    <th class="capitalizeall">Product {{::label}}</th>
     <td>{{::item.productData[label]}}</td>
   </tr>
 </table>
-<div ng-show="item._id==null">
+<div ng-if="item._id==null">
  No record found !!
 </div>
-<a ng-show="mode == 'Product' && item._id!=null" ng-click="deleteProduct(item._id)" class="btn btn-danger">Delete</a>
-<a ng-show="mode == 'Order' && item._id!=null" ng-click="deleteOrder(item._id)" class="btn btn-danger">Delete</a>
+<a ng-if="mode == 'Product' && item._id!=null" ng-click="deleteProduct(item._id)" class="btn btn-danger">Delete</a>
+<a ng-if="mode == 'Order' && item._id!=null" ng-click="deleteOrder(item._id)" class="btn btn-danger">Delete</a>

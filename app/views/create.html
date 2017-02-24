@@ -1,18 +1,18 @@
-<h2 ng-show="item._id!=null">Edit {{::mode}}</h2>
-<h2 ng-hide="item._id!=null">Create {{::mode}}</h2>
+<h2 ng-if="item._id!=null">Edit {{::mode}}</h2>
+<h2 ng-if="item._id==null">Create {{::mode}}</h2>
 <hr>
 <form name="formData" ng-submit="saveData()" novalidate class="form-horizontal">
-  <div class="form-group" ng-repeat="label in labels" ng-show="label.code != '_id'">
+  <div class="form-group" ng-repeat="label in labels track by label.code" ng-if="label.code != '_id'">
     <label class="col-md-2 capitalizeall {{::label.required == 'true'?'required':''}}">{{::label.name}}</label>
     <div class="col-md-10">
-      <input type={{::label.type}} ng-model="item[label.code]" name="{{::label.code}}" ng-required="{{::label.required}}" class="form-control"/>
+      <input type={{::label.type}} ng-model="item[label.code]" name="{{::label.code}}" ng-required="{{::label.required}}" class="form-control" ng-model-options="{ debounce: 100 }"/>
       <p ng-show="formData.{{::label.code}}.$error.required && (formData.$submitted || formData.{{::label.code}}.$dirty)" class="text-danger capitalizeall">Please Enter {{::label.name}}</p>
     </div>
   </div>
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Update" class="btn btn-primary" ng-show="item._id!=null"/>
-      <input type="submit" value="Save" class="btn btn-primary" ng-hide="item._id!=null"/>
+      <input type="submit" value="Update" class="btn btn-primary" ng-if="item._id!=null"/>
+      <input type="submit" value="Save" class="btn btn-primary" ng-if="item._id==null"/>
       <a ui-sref="{{::mode | lowercase}}s" class="btn btn-warning">Cancel</a>
     </div>
   </div>
